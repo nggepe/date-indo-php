@@ -128,7 +128,7 @@ class DateTimeIndo
 
     private function month()
     {
-        $key = intval($this->parseMysql()["month"]) - 1 == 0 ? 1 : intval($this->parseMysql()["month"]) - 1;
+        $key = intval($this->parseMysql()["month"]) - 1 < 0 ? 0 : intval($this->parseMysql()["month"]) - 1;
         return $this->long_month[$key];
     }
 
@@ -155,4 +155,8 @@ class DateTimeIndo
         $data = $this->parseIndo();
         return $data["year"] . "-" . $data["month"] . "-" . $data["day"];
     }
+}
+
+function dateIndo($date){
+    return new DateTimeIndo($date);
 }
